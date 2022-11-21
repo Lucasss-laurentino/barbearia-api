@@ -41,7 +41,9 @@ class UserController extends Controller
     }
 
     public function index() {
+
         // Retornar todos barbeiros e horarios de cada barbeiro
+        
 
         return 'voce esta no index';
     }
