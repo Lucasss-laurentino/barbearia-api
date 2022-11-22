@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('barbeiros', function (Blueprint $table) {
+        Schema::create('hours', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('perfil');
+            $table->string('time');
+            $table->boolean('reserved');
+            $table->foreignId('barber_id')->constrained()->onDelete('cascade');
+            $table->bigInteger('user_id')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('barbeiros');
+        Schema::dropIfExists('hours');
     }
 };

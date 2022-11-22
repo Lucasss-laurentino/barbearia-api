@@ -5,18 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Horario extends Model
+class Barber extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'time',
-        'reserved',
-        'barber_id',
-        'user_id',
+        'name',
+        'perfil',
     ];
 
-    public function barbeiro() {
-        return $this->belongsTo(Barbeiro::class);
+    public function hours() {
+        return $this->hasMany(Horario::class);
     }
 }

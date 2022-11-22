@@ -25,7 +25,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('auth:sanctum')->group(function() {
 
     Route::get('/index', [UserController::class, 'index']);
+    Route::put('/reserve', [UserController::class, 'reserve']);
+
     Route::post('/createBarber', [AdmController::class, 'createBarber']);
+    Route::post('/createHour', [AdmController::class, 'createHour']);
+
 
 });
 
