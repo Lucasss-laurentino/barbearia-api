@@ -26,10 +26,13 @@ Route::middleware('auth:sanctum')->group(function() {
 
     Route::get('/index', [UserController::class, 'index']);
     Route::put('/reserve', [UserController::class, 'reserve']);
+    Route::post('/getHourReserved', [UserController::class, 'getHourReserved']);
+    Route::put('/unmark', [UserController::class, 'unmark']);
 
     Route::post('/createBarber', [AdmController::class, 'createBarber']);
     Route::post('/createHour', [AdmController::class, 'createHour']);
-
+    Route::delete('/barberDelete/{id}', [AdmController::class, 'barberDelete']);
+    Route::post('/editBarber', [AdmController::class, 'editBarber']);
 
 });
 

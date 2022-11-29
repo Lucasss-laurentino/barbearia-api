@@ -36,4 +36,31 @@ class AdmController extends Controller
         return $hours;
 
     }
+
+    public function barberDelete($id) {
+        
+        $barber = Barber::where('id', $id)->get()->first();
+        $barber->delete();
+
+        $barbers = Barber::all();
+        
+        return $barbers;
+    
+    }
+
+    public function editBarber(Request $request) {
+
+        $path_perfil = $request->file('image')->store($request->name,'public');
+
+        $barber = Barber::where('id', $request->id)->get()->first();
+
+        $barber->name = $request->name;
+        $barber->perfil = $path_perfil;
+        $barber->save(); 
+    
+        $barbers = Barber::all();
+            
+        return [$barber, $barbers];
+    
+    }
 }

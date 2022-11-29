@@ -79,6 +79,48 @@ class UserController extends Controller
         $user->save();
 
         $hours = Hour::all();
-        return [$hour, $hours];
+
+        $barber = Barber::where('id', $hour->barber_id)->get()->first();
+
+        // Retornando hour e barber para setar a modal de horario marcado no front
+        return [$hour, $hours, $barber];
+    }
+
+    public function getHourReserved(Request $request) {
+        
+        $user = User::find($request->userId)->get()->first();
+
+        if($user->marcado) {
+            
+            $hourReserved = Hour::where('user_id', $user->id)->get()->first();
+            $barberReserved = Barber::find($hourReserved->barber_id)->get()->first();
+            
+            return [$hourReserved, $barberReserved];
+        }
+
+        return '';
+
+    }
+
+    public function unmark(Request $request) {
+
+        $hour = Hour::where('id', $request->hourId)->get()->first();
+
+        if($hour){
+            
+            $user = User::find($hour->user_id)->get()->first();
+            $user->marcado = 0;
+            $user->save();
+
+            $hour->reserved = 0;
+            $hour->user_id = null;
+            $hour->save();
+
+            $hours = Hour::all();
+            
+            return $hours;
+
+        }
+
     }
 }
