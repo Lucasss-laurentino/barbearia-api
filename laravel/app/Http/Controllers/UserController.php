@@ -12,10 +12,11 @@ use App\Models\Hour;
 class UserController extends Controller
 {
     public function createUser(Request $request) {
+
         
         $user = User::create([
-            'email' => $request->email,
-            'password' =>  Hash::make($request->password),
+            'email' => $request->data['email'],
+            'password' =>  Hash::make($request->data['password']),
         ]);
     
         return $user;    
@@ -24,7 +25,8 @@ class UserController extends Controller
 
     public function login(Request $request) {
 
-        $credentials = ['email' => $request->email, 'password' => $request->password];
+        
+        $credentials = ['email' => $request->data['email'], 'password' => $request->data['password']];
 
         if(Auth::attempt($credentials)) {
 
@@ -47,7 +49,7 @@ class UserController extends Controller
         // Retornar todos barbeiros e horarios de cada barbeiro
         
         $barbers = Barber::all();
-        $hours = Hour::all();
+        $hours = Hour::query()->orderBy('time')->get();
 
         return [$barbers, $hours];
         
@@ -78,7 +80,7 @@ class UserController extends Controller
         $user->marcado = 1;
         $user->save();
 
-        $hours = Hour::all();
+        $hours = Hour::query()->orderBy('time')->get();
 
         $barber = Barber::where('id', $hour->barber_id)->get()->first();
 
@@ -116,7 +118,7 @@ class UserController extends Controller
             $hour->user_id = null;
             $hour->save();
 
-            $hours = Hour::all();
+            $hours = Hour::query()->orderBy('time')->get();
             
             return $hours;
 

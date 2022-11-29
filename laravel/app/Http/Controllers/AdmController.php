@@ -31,7 +31,7 @@ class AdmController extends Controller
             'user_id' => null,
         ]);
 
-        $hours = Hour::all();
+        $hours = Hour::query()->orderBy('time')->get();
 
         return $hours;
 
@@ -62,5 +62,16 @@ class AdmController extends Controller
             
         return [$barber, $barbers];
     
+    }
+
+    public function deleteHour($id) {
+
+        $hour = Hour::where('id', $id)->get()->first();
+
+        $hour->delete();
+
+        $hour = Hour::query()->orderBy('time')->get();
+
+        return $hour;
     }
 }

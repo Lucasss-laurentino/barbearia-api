@@ -33,6 +33,7 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::post('/createHour', [AdmController::class, 'createHour']);
     Route::delete('/barberDelete/{id}', [AdmController::class, 'barberDelete']);
     Route::post('/editBarber', [AdmController::class, 'editBarber']);
+    Route::delete('/deleteHour/{id}', [AdmController::class, 'deleteHour']);
 
 });
 
