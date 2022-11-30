@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\BarberFormRequest;
 use App\Models\Barber;
 use App\Models\Hour;
 
 class AdmController extends Controller
 {
-    public function createBarber(Request $request) {
+    public function createBarber(BarberFormRequest $request) {
 
         $image = $request->file('image')->store($request->name, 'public');
 

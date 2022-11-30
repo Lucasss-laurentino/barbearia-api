@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\BarberFormRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +12,7 @@ use App\Models\Hour;
 
 class UserController extends Controller
 {
-    public function createUser(Request $request) {
+    public function createUser(BarberFormRequest $request) {
 
         
         $user = User::create([
@@ -19,11 +20,11 @@ class UserController extends Controller
             'password' =>  Hash::make($request->data['password']),
         ]);
     
-        return $user;    
+        return $user;
         
     }
 
-    public function login(Request $request) {
+    public function login(BarberFormRequest $request) {
 
         
         $credentials = ['email' => $request->data['email'], 'password' => $request->data['password']];
