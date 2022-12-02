@@ -29,6 +29,16 @@
 
 <p>Composer install</p>
 
+### Para configurar o arquivo env execute:
+
+<p>cp .env.example .env</p>
+
+<p>Configure seu banco de dados da linha 11 a 16</p>
+
+### Execute as migrations
+
+<p>php artisan migrate</p>
+
 #### Para rodar o projeto execute:
 
 <p>php artisan serve</p>
