@@ -1,6 +1,6 @@
 # barbearia api
 
-<p>Essa api é consumida por esse <a href=''>front-end</a>
+<p>Essa api é consumida por esse <a href='https://github.com/Lucasss-laurentino/front-barbearia'>front-end</a>
 
 ## Tecnologias utilizadas
 
